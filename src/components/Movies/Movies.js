@@ -1,11 +1,14 @@
 import "./style.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Poster({ img }) {
   return (
     <div className="poster">
-      <img src={img} alt="" />
+      <Link to="/sessoes">
+        <img src={img} alt="" />
+      </Link>
     </div>
   );
 }
@@ -23,14 +26,12 @@ export default function MovieOptions() {
     });
   }, []);
 
-  console.log(movies);
-
   return (
     <div className="page">
       <div className="title">Selecione o filme</div>
       <div className="screening">
-        {movies.map((poster) => (
-          <Poster img={poster.posterURL} />
+        {movies.map((poster, index) => (
+          <Poster key={index} img={poster.posterURL} />
         ))}
       </div>
     </div>
