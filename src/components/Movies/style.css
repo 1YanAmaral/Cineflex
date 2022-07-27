@@ -1,0 +1,19 @@
+@media (max-width: 614px) {
+  .page {
+    display: flex;
+    margin-top: 90px;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #293845;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    height: 50px;
+    width: 100vw;
+  }
+}
