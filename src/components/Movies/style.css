@@ -16,4 +16,22 @@
     height: 50px;
     width: 100vw;
   }
+
+  .poster {
+    width: 130px;
+    height: 195px;
+  }
+
+  .poster img {
+    width: 130px;
+    height: 195px;
+  }
+
+  .screening {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto;
+    justify-content: space-between;
+    
+  }
 }
