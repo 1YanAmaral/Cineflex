@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function Poster({ img }) {
+function Poster({ img, id }) {
   return (
     <div className="poster">
-      <Link to="/sessoes">
+      <Link to={`/sessoes/${id}`}>
         <img src={img} alt="" />
       </Link>
     </div>
@@ -31,7 +31,7 @@ export default function MovieOptions() {
       <div className="title">Selecione o filme</div>
       <div className="screening">
         {movies.map((poster, index) => (
-          <Poster key={index} img={poster.posterURL} />
+          <Poster key={index} img={poster.posterURL} id={poster.id} />
         ))}
       </div>
     </div>

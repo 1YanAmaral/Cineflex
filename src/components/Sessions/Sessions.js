@@ -1,13 +1,15 @@
 import "./style.css";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Sessions() {
   const [sessions, setSessions] = useState([]);
+  const { movieId } = useParams();
 
   useEffect(() => {
     const getSessions = axios.get(
-      "https://mock-api.driven.com.br/api/v5/cineflex/movies/1/showtimes"
+      `https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieId}/showtimes`
     );
 
     getSessions.then((sessions) => {
