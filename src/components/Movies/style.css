@@ -20,6 +20,7 @@
   .poster {
     width: 130px;
     height: 195px;
+    margin: 10px 10px;
   }
 
   .poster img {
@@ -31,7 +32,6 @@
     display: flex;
     flex-wrap: wrap;
     margin: 30px auto;
-    justify-content: space-between;
-    
+    justify-content: center;
   }
 }
