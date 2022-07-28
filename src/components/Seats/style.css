@@ -1,7 +1,97 @@
 @media (max-width: 614px) {
-  .poster {
-    width: 130px;
-    height: 195px;
-    margin: 10px 10px;
+  * {
+    box-sizing: border-box;
+  }
+
+  .seat {
+    width: 26px;
+    height: 26px;
+    margin: 10px 4px;
+    border: 1px solid #808f9d;
+    border-radius: 50%;
+    background-color: #c3cfd9;
+    color: #000000;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .seats {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto 20px;
+  }
+
+  .selected {
+    border: 1px solid #1aae9e;
+    background-color: #8dd7cf;
+  }
+
+  .unavailiable {
+    border: 1px solid #f7c52b;
+    background-color: #fbe192;
+  }
+
+  input {
+    width: 327px;
+    height: 51px;
+    background: #ffffff;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    margin: auto 25px;
+    margin-bottom: 10px;
+  }
+
+  input::placeholder {
+    font-family: "Roboto";
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    color: #afafaf;
+  }
+
+  .buyer {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #293845;
+    margin: auto 25px;
+  }
+
+  .colorcode {
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 50px;
+  }
+
+  .code {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #4e5a65;
+  }
+
+  button {
+    background-color: #e8833a;
+    width: 225px;
+    height: 45px;
+    color: #ffffff;
+    border-radius: 3px;
+    font-size: 16px;
+    margin: auto auto;
+    margin-top: 50px;
+    border-width: 0;
   }
 }
