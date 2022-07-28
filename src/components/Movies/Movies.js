@@ -18,7 +18,7 @@ export default function MovieOptions() {
 
   useEffect(() => {
     const getMovies = axios.get(
-      "https://mock-api.driven.com.br/api/v5/cineflex/movies"
+      "https://mock-api.driven.com.br/api/v7/cineflex/movies"
     );
 
     getMovies.then((movies) => {

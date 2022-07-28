@@ -10,7 +10,7 @@ export default function Sessions() {
 
   useEffect(() => {
     const getSessions = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieId}/showtimes`
+      `https://mock-api.driven.com.br/api/v7/cineflex/movies/${movieId}/showtimes`
     );
 
     getSessions.then((sessions) => {

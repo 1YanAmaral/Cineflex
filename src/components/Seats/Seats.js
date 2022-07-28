@@ -11,7 +11,7 @@ export default function Seats() {
 
   useEffect(() => {
     const getSeats = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessionId}/seats`
+      `https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${sessionId}/seats`
     );
 
     getSeats.then((seats) => {
@@ -30,16 +30,42 @@ export default function Seats() {
   //   }, []);
   console.log(seats);
 
+  const [name, setName] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [ids, setIds] = useState([]);
+  const [selected, setSelected] = useState(false);
+
+  function reserveSeats(event) {
+    event.preventDefault();
+
+    const request = axios.post(
+      "https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
+      {
+        ids,
+        name,
+        cpf,
+      }
+    );
+  }
+  //lançar um props pros assentos não selecionarem todos de uma vez
   return (
     <div className="page">
       <div className="title">Selecione o(s) assento(s)</div>
       <div className="seats">
         {seats.map((seat) =>
-          seat.isAvailiable ? (
-            <div className="seat">{seat.name}</div>
+          seat.isAvailable ? (
+            !selected ? (
+              <div className="seat" onClick={() => setSelected(true)}>
+                {seat.name}
+              </div>
+            ) : (
+              <div className="seat selected" onClick={() => setSelected(false)}>
+                {seat.name}
+              </div>
+            )
           ) : (
             <div
-              className="seat unavailiable"
+              className="seat unavailable"
               onClick={() => alert("Esse assento não está disponível")}
             >
               {seat.name}
@@ -57,15 +83,35 @@ export default function Seats() {
           Disponível
         </div>
         <div className="code">
-          <div className="seat unavailiable"></div>
+          <div className="seat unavailable"></div>
           Indisponível
         </div>
       </div>
-      <div className="buyer">Nome do comprador:</div>
-      <input placeholder="Digite seu nome..."></input>
-      <div className="buyer">CPF do comprador:</div>
-      <input placeholder="Digite seu CPF..."></input>
-      <button className="reserve">Reservar assento(s)</button>
+      <form onSubmit={reserveSeats}>
+        <div className="buyer">Nome do comprador:</div>
+        <input
+          type="name"
+          value={name}
+          placeholder="Digite seu nome..."
+          onChange={() => {
+            setName("");
+          }}
+          required
+        ></input>
+        <div className="buyer">CPF do comprador:</div>
+        <input
+          type="text"
+          value={cpf}
+          placeholder="Digite seu CPF..."
+          onChange={() => {
+            setCpf("");
+          }}
+          required
+        ></input>
+        <button type="submit" className="reserve">
+          Reservar assento(s)
+        </button>
+      </form>
     </div>
   );
 }
