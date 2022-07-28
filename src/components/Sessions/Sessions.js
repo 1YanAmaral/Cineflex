@@ -1,5 +1,6 @@
 import "./style.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -28,7 +29,9 @@ export default function Sessions() {
             </div>
             <div className="showtimes">
               {session.showtimes.map((times) => (
-                <button>{times.name}</button>
+                <Link to={`/assentos/${times.id}`}>
+                  <button>{times.name}</button>
+                </Link>
               ))}
             </div>
           </>
