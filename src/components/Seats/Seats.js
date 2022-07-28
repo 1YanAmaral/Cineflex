@@ -38,7 +38,12 @@ export default function Seats() {
           seat.isAvailiable ? (
             <div className="seat">{seat.name}</div>
           ) : (
-            <div className="seat unavailiable">{seat.name}</div>
+            <div
+              className="seat unavailiable"
+              onClick={() => alert("Esse assento não está disponível")}
+            >
+              {seat.name}
+            </div>
           )
         )}
       </div>
@@ -60,7 +65,7 @@ export default function Seats() {
       <input placeholder="Digite seu nome..."></input>
       <div className="buyer">CPF do comprador:</div>
       <input placeholder="Digite seu CPF..."></input>
-      <button>Reservar assento(s)</button>
+      <button className="reserve">Reservar assento(s)</button>
     </div>
   );
 }
