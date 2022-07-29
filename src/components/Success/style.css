@@ -1,0 +1,36 @@
+@media (max-width: 614px) {
+  .success {
+    color: #247a6b;
+    margin: 20px auto;
+  }
+
+  .title-info {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    color: #293845;
+    margin: 10px 30px;
+    letter-spacing: 0.04em;
+  }
+
+  .movie-info {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    color: #293845;
+    margin-left: 20px;
+    margin: 10px 20px;
+    letter-spacing: 0.04em;
+    margin: 10px 30px;
+    width: 100vw;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+  }
+}

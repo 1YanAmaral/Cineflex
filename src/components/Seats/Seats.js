@@ -1,8 +1,9 @@
 import "./style.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Footer/Footer";
+import Success from "../Success/Success";
 
 function Seat({ name, id, ids, setIds }) {
   const [selected, setSelected] = useState("seat");
@@ -36,6 +37,7 @@ export default function Seats() {
   const [movie, setMovie] = useState({});
   const [seats, setSeats] = useState([]);
   const { sessionId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getSeats = axios.get(
@@ -67,6 +69,18 @@ export default function Seats() {
     );
 
     console.log(name, cpf, ids);
+
+    navigate("/sucesso", {
+      replace: false,
+      state: {
+        name: name,
+        cpf: cpf,
+        seats: ids,
+        title: movie.movie.title,
+        day: movie.day.weekday,
+        time: movie.name,
+      },
+    });
   }
 
   return (
@@ -79,7 +93,7 @@ export default function Seats() {
               <Seat
                 key={index}
                 name={seat.name}
-                id={seat.id}
+                id={seat.name}
                 setIds={setIds}
                 ids={ids}
               />
