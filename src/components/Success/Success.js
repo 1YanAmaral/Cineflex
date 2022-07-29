@@ -7,6 +7,7 @@ function Assento({ seatNumber }) {
 
 export default function Success() {
   const location = useLocation();
+  console.log(location);
   return (
     <>
       <div className="page">
@@ -20,8 +21,8 @@ export default function Success() {
         </div>
         <div className="group">
           <div className="title-info">Ingressos</div>
-          {location.state.seats.map((seat) => (
-            <Assento seatNumber={seat} />
+          {location.state.seats.map((seat, index) => (
+            <Assento key={index} seatNumber={seat} />
           ))}
         </div>
         <div className="group">

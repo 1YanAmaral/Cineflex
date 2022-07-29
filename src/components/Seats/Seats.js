@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 
-function Seat({ name, id, ids, setIds }) {
+function Seat({ name, id, ids, setIds, seatName, seatNames, setSeatNames }) {
   const [selected, setSelected] = useState("seat");
 
   return selected === "seat" ? (
@@ -13,7 +13,8 @@ function Seat({ name, id, ids, setIds }) {
       onClick={() => {
         setSelected("seat selected");
         setIds([...ids, id]);
-        console.log(id, ids);
+        setSeatNames([...seatNames, seatName]);
+        console.log(seatNames);
       }}
     >
       {name}
@@ -24,7 +25,8 @@ function Seat({ name, id, ids, setIds }) {
       onClick={() => {
         setSelected("seat");
         setIds(ids.filter((value) => value !== id));
-        console.log(ids);
+        setSeatNames(seatNames.filter((value) => value !== seatName));
+        console.log(seatNames);
       }}
     >
       {name}
@@ -35,6 +37,7 @@ function Seat({ name, id, ids, setIds }) {
 export default function Seats() {
   const [movie, setMovie] = useState({});
   const [seats, setSeats] = useState([]);
+  const [seatNames, setSeatNames] = useState([]);
   const { sessionId } = useParams();
   const navigate = useNavigate();
 
@@ -57,28 +60,30 @@ export default function Seats() {
 
   function reserveSeats(event) {
     event.preventDefault();
+    const objReserve = {
+      ids,
+      name,
+      cpf,
+    };
 
     const request = axios.post(
       "https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
-      {
-        ids,
-        name,
-        cpf,
-      }
+      objReserve
     );
 
-    console.log(name, cpf, ids);
-
-    navigate("/sucesso", {
-      replace: false,
-      state: {
-        name: name,
-        cpf: cpf,
-        seats: ids,
-        title: movie.movie.title,
-        day: movie.day.weekday,
-        time: movie.name,
-      },
+    console.log(objReserve);
+    request.then(() => {
+      navigate("/sucesso", {
+        replace: false,
+        state: {
+          name: name,
+          cpf: cpf,
+          seats: seatNames,
+          title: movie.movie.title,
+          day: movie.day.weekday,
+          time: movie.name,
+        },
+      });
     });
   }
 
@@ -92,9 +97,12 @@ export default function Seats() {
               <Seat
                 key={index}
                 name={seat.name}
-                id={seat.name}
+                id={seat.id}
                 setIds={setIds}
                 ids={ids}
+                seatName={seat.name}
+                seatNames={seatNames}
+                setSeatNames={setSeatNames}
               />
             ) : (
               <div
