@@ -1,6 +1,4 @@
 import "./style.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function Footer({ thumb, title, day, time }) {
   return (
@@ -10,9 +8,13 @@ export default function Footer({ thumb, title, day, time }) {
       </div>
       <div className="info">
         <div className="movie-title">{title}</div>
-        <div className="times">
-          {day} - {time}
-        </div>
+        {time ? (
+          <div className="times">
+            {day} - {time}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import "./style.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Footer/Footer";
@@ -23,17 +22,6 @@ export default function Seats() {
   const [movie, setMovie] = useState({});
   const [seats, setSeats] = useState([]);
   const { sessionId } = useParams();
-
-  function showFooter() {
-    return (
-      <Footer
-        thumb={movie.movie.posterURL}
-        title={movie.movie.title}
-        day={movie.day.weekday}
-        time={movie.name}
-      />
-    );
-  }
 
   useEffect(() => {
     const getSeats = axios.get(
@@ -123,12 +111,16 @@ export default function Seats() {
           </button>
         </form>
       </div>
-      <Footer
-        thumb={movie.movie.posterURL}
-        title={movie.movie.title}
-        day={movie.day.weekday}
-        time={movie.name}
-      />
+      {movie.name ? (
+        <Footer
+          thumb={movie.movie.posterURL}
+          title={movie.movie.title}
+          day={movie.day.weekday}
+          time={movie.name}
+        />
+      ) : (
+        <></>
+      )}
     </>
   );
 }
