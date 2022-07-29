@@ -4,6 +4,20 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+function Seat({ name }) {
+  const [selected, setSelected] = useState("seat");
+
+  return selected === "seat" ? (
+    <div className={selected} onClick={() => setSelected("seat selected")}>
+      {name}
+    </div>
+  ) : (
+    <div className={selected} onClick={() => setSelected("seat")}>
+      {name}
+    </div>
+  );
+}
+
 export default function Seats() {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [seats, setSeats] = useState([]);
@@ -33,7 +47,6 @@ export default function Seats() {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [ids, setIds] = useState([]);
-  const [selected, setSelected] = useState(false);
 
   function reserveSeats(event) {
     event.preventDefault();
@@ -54,15 +67,7 @@ export default function Seats() {
       <div className="seats">
         {seats.map((seat) =>
           seat.isAvailable ? (
-            !selected ? (
-              <div className="seat" onClick={() => setSelected(true)}>
-                {seat.name}
-              </div>
-            ) : (
-              <div className="seat selected" onClick={() => setSelected(false)}>
-                {seat.name}
-              </div>
-            )
+            <Seat name={seat.name} />
           ) : (
             <div
               className="seat unavailable"
