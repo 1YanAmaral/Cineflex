@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Footer/Footer";
-import Success from "../Success/Success";
 
 function Seat({ name, id, ids, setIds }) {
   const [selected, setSelected] = useState("seat");

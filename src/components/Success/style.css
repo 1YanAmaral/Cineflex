@@ -13,6 +13,19 @@
     margin: 10px 30px;
     letter-spacing: 0.04em;
   }
+  .movie-title {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    color: #293845;
+    margin: 15px 30px;
+    margin-bottom: auto;
+  }
 
   .movie-info {
     font-family: "Roboto";
@@ -20,7 +33,7 @@
     font-weight: 400;
     font-size: 22px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     color: #293845;
     margin-left: 20px;
     margin: 10px 20px;

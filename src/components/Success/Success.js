@@ -1,5 +1,9 @@
 import "./style.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+
+function Assento({ seatNumber }) {
+  return <div className="movie-info">Assento {seatNumber}</div>;
+}
 
 export default function Success() {
   const location = useLocation();
@@ -9,22 +13,28 @@ export default function Success() {
         <div className="title success">Pedido feito com sucesso!</div>
         <div className="group">
           <div className="title-info">Filme e sessão</div>
+          <div className="movie-title">{location.state.title}</div>
           <div className="movie-info">
-            {location.state.title} {location.state.day} {location.state.time}
+            {location.state.day} {location.state.time}
           </div>
         </div>
         <div className="group">
           <div className="title-info">Ingressos</div>
-          <div className="movie-info">Assento {location.state.seats}</div>
+          {location.state.seats.map((seat) => (
+            <Assento seatNumber={seat} />
+          ))}
         </div>
         <div className="group">
           <div className="title-info">Comprador</div>
           <div className="movie-info">
-            {location.state.name} {location.state.cpf}
+            <span>Nome: {location.state.name}</span>
+            <span>CPF:{location.state.cpf}</span>
           </div>
         </div>
       </div>
-      <button className="reserve">Voltar pra home</button>
+      <Link to={"/"}>
+        <button className="reserve">Voltar pra home</button>
+      </Link>
     </>
   );
 }
