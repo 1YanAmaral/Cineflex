@@ -4,15 +4,29 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 
-function Seat({ name, id }) {
+function Seat({ name, id, ids, setIds }) {
   const [selected, setSelected] = useState("seat");
 
   return selected === "seat" ? (
-    <div className={selected} onClick={() => setSelected("seat selected")}>
+    <div
+      className={selected}
+      onClick={() => {
+        setSelected("seat selected");
+        setIds([...ids, id]);
+        console.log(id, ids);
+      }}
+    >
       {name}
     </div>
   ) : (
-    <div className={selected} onClick={() => setSelected("seat")}>
+    <div
+      className={selected}
+      onClick={() => {
+        setSelected("seat");
+        setIds(ids.filter((value) => value !== id));
+        console.log(ids);
+      }}
+    >
       {name}
     </div>
   );
@@ -51,6 +65,8 @@ export default function Seats() {
         cpf,
       }
     );
+
+    console.log(name, cpf, ids);
   }
 
   return (
@@ -58,11 +74,18 @@ export default function Seats() {
       <div className="page">
         <div className="title">Selecione o(s) assento(s)</div>
         <div className="seats">
-          {seats.map((seat) =>
+          {seats.map((seat, index) =>
             seat.isAvailable ? (
-              <Seat name={seat.name} id={seat.id} />
+              <Seat
+                key={index}
+                name={seat.name}
+                id={seat.id}
+                setIds={setIds}
+                ids={ids}
+              />
             ) : (
               <div
+                key={index}
                 className="seat unavailable"
                 onClick={() => alert("Esse assento não está disponível")}
               >
@@ -91,9 +114,7 @@ export default function Seats() {
             type="name"
             value={name}
             placeholder="Digite seu nome..."
-            onChange={() => {
-              setName("");
-            }}
+            onChange={(event) => setName(event.target.value)}
             required
           ></input>
           <div className="buyer">CPF do comprador:</div>
@@ -101,9 +122,7 @@ export default function Seats() {
             type="text"
             value={cpf}
             placeholder="Digite seu CPF..."
-            onChange={() => {
-              setCpf("");
-            }}
+            onChange={(event) => setCpf(event.target.value)}
             required
           ></input>
           <button type="submit" className="reserve">

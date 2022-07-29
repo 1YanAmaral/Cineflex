@@ -29,7 +29,7 @@ export default function Sessions() {
       <div className="sessions">
         {sessions.map((session, index) => (
           <>
-            <div className="weekday">
+            <div className="weekday" key={index}>
               {session.weekday} - {session.date}
             </div>
             <div className="showtimes">
