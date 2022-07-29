@@ -26,6 +26,8 @@ export default function MovieOptions() {
     });
   }, []);
 
+  //console.log(movies);
+
   return (
     <div className="page">
       <div className="title">Selecione o filme</div>

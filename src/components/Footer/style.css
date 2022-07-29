@@ -1,0 +1,43 @@
+@media (max-width: 614px) {
+  .footer {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 117px;
+    background-color: #dfe6ed;
+    border: 1px solid #9eadba;
+  }
+
+  .thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 89px;
+    background-color: white;
+    margin: auto 10px;
+  }
+
+  img {
+    width: 50px;
+    height: 70px;
+  }
+
+  .movie-title,
+  .times {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    justify-content: center;
+  }
+}

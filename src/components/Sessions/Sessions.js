@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Footer from "../Footer/Footer";
 
 export default function Sessions() {
   const [sessions, setSessions] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState({});
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -15,9 +17,12 @@ export default function Sessions() {
 
     getSessions.then((sessions) => {
       setSessions(sessions.data.days);
+      setSelectedMovie(sessions.data);
     });
   }, []);
-  console.log(sessions);
+
+  console.log(selectedMovie);
+
   return (
     <div className="page">
       <div className="title">Selecione o horário</div>
@@ -37,6 +42,7 @@ export default function Sessions() {
           </>
         ))}
       </div>
+      <Footer thumb={selectedMovie.posterURL} title={selectedMovie.title} />
     </div>
   );
 }
