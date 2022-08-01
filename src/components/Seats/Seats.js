@@ -14,7 +14,6 @@ function Seat({ name, id, ids, setIds, seatName, seatNames, setSeatNames }) {
         setSelected("seat selected");
         setIds([...ids, id]);
         setSeatNames([...seatNames, seatName]);
-        console.log(seatNames);
       }}
     >
       {name}
@@ -26,7 +25,6 @@ function Seat({ name, id, ids, setIds, seatName, seatNames, setSeatNames }) {
         setSelected("seat");
         setIds(ids.filter((value) => value !== id));
         setSeatNames(seatNames.filter((value) => value !== seatName));
-        console.log(seatNames);
       }}
     >
       {name}
@@ -52,8 +50,6 @@ export default function Seats() {
     });
   }, []);
 
-  console.log(movie);
-
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [ids, setIds] = useState([]);
@@ -71,7 +67,6 @@ export default function Seats() {
       objReserve
     );
 
-    console.log(objReserve);
     request.then(() => {
       navigate("/sucesso", {
         replace: false,
@@ -129,6 +124,7 @@ export default function Seats() {
             Indisponível
           </div>
         </div>
+
         <form onSubmit={reserveSeats}>
           <div className="buyer">Nome do comprador:</div>
           <input

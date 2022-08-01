@@ -21,8 +21,6 @@ export default function Sessions() {
     });
   }, []);
 
-  console.log(selectedMovie);
-
   return (
     <div className="page">
       <div className="title">Selecione o horário</div>
